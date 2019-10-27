@@ -7,7 +7,7 @@ We leverage the following guide to build the infrastructure :
 - https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html
 
 Both EC2 instances will then be configured using Ansible playbooks to get a fully secured Nextcloud service. 
-You can prevent this step using Ansible-NC-MariaDB-Enabled = false in terraform.tfvars, in which case the process will end up with a fresh VPC made of 2 subnets (frontend and backend) with an EC2 instance each, running latest version of Ubuntu image by Canonical available in AWS.  
+You can prevent this step using *Ansible-NC-MariaDB-Enabled = false* in **terraform.tfvars**, in which case the process will end up with a fresh VPC made of 2 subnets (frontend and backend) with an EC2 instance each, running latest version of Ubuntu image by Canonical available in AWS.  
 
 The current version doesn't use Elastic IP for Nextcloud service, but simple public IP's. As soon as the frontend is available, ensure its DNS fully qualified domain name (FQDN) is set in CNAME record of a valid FQDN from your domain (e.g. nextcloud.mydomain.com). \
 The reason is that Let's Encrypt doesn't accept to create certificates for Amazon public FQDN's.
