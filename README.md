@@ -40,14 +40,17 @@ $ terraform apply
 
 ```
 .
+├── .gitignore
 ├── main.tf
 ├── modules
 │   ├── EC2Instances
 │   │   ├── main.tf
 │   │   ├── outputs.tf
+│   │   ├── README.txt
 │   │   └── variables.tf
 │   ├── EC2InstancesConfig
 │   │   ├── main.tf
+│   │   ├── README.txt
 │   │   └── variables.tf
 │   ├── SecurityGroups
 │   │   ├── main.tf
@@ -60,12 +63,13 @@ $ terraform apply
 │       ├── README.txt
 │       └── variables.tf
 ├── outputs.tf
-├── README.txt
+├── README.md
 ├── templates
 │   ├── Backend-servers_inventory.tpl
 │   └── Frontend-servers_inventory.tpl
 ├── terraform.tfvars
-└── variables.tf
+├── variables.tf
+└── versions.tf
 ```
 
 ## Here are the main steps performed by these Terraform modules :
@@ -96,6 +100,7 @@ Triggs the modules described below then displays usefull information about the c
     - Backend port 22/TCP (SSH) reachable over IPv6 from the host currently running Terraform, only 
 
 **Module EC2Instances creates the instances from latest Ubuntu images by Canonical**
+
 12. Create backend server and authorize our SSH public key
     - Assign respective security group
 13. Perform some SysAdmin tasks on the backend VM (over SSH)
@@ -112,6 +117,7 @@ Triggs the modules described below then displays usefull information about the c
 18. Update Ansible inventory file with frontend server information
 
 **Module EC2InstancesConfig runs the Ansible playbooks**
+
 19. Install and configure Apache, PHP, MariaDB, Redis, Nextcloud and Let'Encrypt
 20. Delete Ansible inventories
 21. Possibly, disable direct access to backend subnet
