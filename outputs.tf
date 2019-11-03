@@ -61,3 +61,7 @@ output "EC2-Frontend-server-public-FQDN" {
 output "EC2-Frontend-server-private-FQDN" {
   value = module.EC2Instances.EC2-FrontendSRV-PrivFQDN
 }
+
+output "Nextcloud-FQDN" {
+  value = var.Nextcloud-FQDN
+}

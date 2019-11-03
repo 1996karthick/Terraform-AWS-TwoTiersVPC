@@ -23,10 +23,10 @@ aws_region                = "eu-west-3"
 # Variables used in several modules creating Azure objects 
 # 
 
-# Prefix for all AWS objects
+# Prefix used in all AWS objects
 ObjNames-Prefix = "B13"
 
-# Prefix for all AWS tags
+# Prefix used in all AWS tags
 Tags-Prefix = "B13"
 
 #
@@ -39,7 +39,7 @@ Tags-Prefix = "B13"
 
 # The next variable contains the VPC main subnet using CIDR notation (16 bit subnetmask).
 # Two sub-subnets (24 subnetmask) will be automatically created out of the parent one
-VPC-IPv4-CIDR         = "10.13.0.0/16"
+VPC-IPv4-CIDR         = "10.1.0.0/16"
 
 #
 # End of variable to be set for TwoTiersVPC module definition
@@ -57,6 +57,7 @@ VPC-IPv4-CIDR         = "10.13.0.0/16"
 # Variables to be set for EC2Instances module definitions
 # 
 
+# Next 4 variables define the image to be installed in EC2 instances 
 # To get list of available images, "aws describe-images" command line can be used
 # or connaect to AWS EC2 console and look for AMI's
 # Owner of the image (AMI) to be installed in EC2instances
@@ -81,28 +82,32 @@ EC2-SSHPubKey   = "/some/path/.ssh/ubuntu_rsa.pub"
 # Variables to be set for EC2InstancesConfig module definitions
 # 
 
+# Variable to run this module or not (true or false without quotes)
+Ansible-NC-MariaDB-Enabled = true
+
 # Agent ID (name of the SSH key) to be used by Ansible to connect to remote EC2 instances 
-SSH-agent-ID          = "b13lab_rsa"
+SSH-agent-ID          = "ubuntu_rsa"
 # Remote Linux account to be used by Ansible to connect to remote EC2 instances 
 # On Ubuntu images by Canonical, the SSH key has been authorized on default account named "ubuntu"
 SSH-username          = "ubuntu"
 
-# Variable to run this module or not (true or false without quotes)
-Ansible-NC-MariaDB-Enabled = true
-
 # Directory where Ansible playbooks have been copied (cloned from GitHub)  
-Ansible-PlayDir       = "/B13/SDI/ANSIBLE/SETUP"
-# Ansible playbooks contain Ansible vaults to store sensitive information, like passwords
-# To fully automatize the deployment of Nextcloud, the passphraseof the vaults can temporarily 
-# be stored in a plaintext file. If the next variable is empty, the user will be prompted to enter 
-# the passphrase. If set, the respective filename must contain the plaintext passphrase to be used 
-Ansible-RedisVaultPwd = "/B13/SDI/ANSIBLE/SETUP/redisVault_pwd.txt"
-Ansible-NCVaultPwd    = "/B13/SDI/ANSIBLE/SETUP/ncVault_pwd.txt"
+Ansible-PlayDir       = "/var/IAC/ANSIBLE/SETUP"
+# Ansible playbooks leverage Ansible vaults to store sensitive information, like passwords
+# The next two variables can contain either :
+#     - a filename containing the password of the respective vault
+#     - the string "prompt" to be prompted for the password 
+# To fully automatize the deployment of Nextcloud, the passphrase of the vaults can temporarily 
+# be stored in a plaintext file or the passwords can be set here. But make sure to protect the files
+# and don't upload these secrets in any source control system like Github.
+Ansible-RedisVaultPwd = "/var/IAC/ANSIBLE/SETUP/redisVault_pwd.txt"
+Ansible-NCVaultPwd    = "/var/IAC/ANSIBLE/SETUP/ncVault_pwd.txt"
 
 # DNS name (FQDN) to be used to access the feshly installed Nextcloud instance.
 # This variable is used to produce the Let's Encrypt certificate
+# Note that the FQDN must resolve publicly for Let's Encrypt activation to succeed.
 # Either set an explicit FQDN
-Nextcloud-FQDN        = "aws-nc1.byte13.org"
+Nextcloud-FQDN        = "aws-nc1.yourdomain.org"
 # or, in main.tf, use the FQDN returned by Terrafrom AWS provisionner (module.EC2Instances.PubIP1-FQDN)
 # Version of Nextcloud to be installed
 Nextcloud-Version     = "17.0.0"
@@ -110,7 +115,7 @@ Nextcloud-Version     = "17.0.0"
 Nextcloud-DataDir     = "/var/NCDATA"
 
 # Mail address to be used for notifications from Let's Encrypt 
-Letsencrypt-email     = "tag@bluewin.ch"
+Letsencrypt-email     = "yourname@yourdomain.org"
 
 #
 # End of variable to be set for EC2InstancesConfig module definition
