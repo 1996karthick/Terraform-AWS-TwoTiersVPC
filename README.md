@@ -117,7 +117,8 @@ Triggs the modules described below then displays usefull information about the c
                 Elastic IP is static and keeps assigned (and charged) while the instance is down.
 18. Update Ansible inventory file with frontend server information
 
-**Module EC2InstancesConfig runs the Ansible playbooks** (executed only if *Ansible-NC-MariaDB-Enabled = true* in **terraform.tfvars**
+**Module EC2InstancesConfig runs the Ansible playbooks** \
+(executed only if *Ansible-NC-MariaDB-Enabled = true* in **terraform.tfvars**
 
 19. Install and configure Apache, PHP, MariaDB, Redis, Nextcloud and Let'Encrypt
 20. Delete Ansible inventories
