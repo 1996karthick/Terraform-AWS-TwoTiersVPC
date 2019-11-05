@@ -17,7 +17,7 @@ All steps described have been tested on Ubuntu 18.04-LTS running :
 - Ansible 2.8.5
 - Python 2.7.15+ 
 
-**Prerequisits to deploy the infrastructure and install a secured Nextcloud** (executed only if *Ansible-NC-MariaDB-Enabled = true* in **terraform.tfvars**
+**Prerequisits to deploy the infrastructure and install a secured Nextcloud** 
 
 a. Create an account in AWS and get respective API keys to be used with Terraform \
 b. [Install Terraform](https://askubuntu.com/questions/983351/how-to-install-terraform-in-ubuntu#983352) and ensure it is in your $PATH \
@@ -117,7 +117,7 @@ Triggs the modules described below then displays usefull information about the c
                 Elastic IP is static and keeps assigned (and charged) while the instance is down.
 18. Update Ansible inventory file with frontend server information
 
-**Module EC2InstancesConfig runs the Ansible playbooks**
+**Module EC2InstancesConfig runs the Ansible playbooks** (executed only if *Ansible-NC-MariaDB-Enabled = true* in **terraform.tfvars**
 
 19. Install and configure Apache, PHP, MariaDB, Redis, Nextcloud and Let'Encrypt
 20. Delete Ansible inventories
