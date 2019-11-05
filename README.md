@@ -19,7 +19,7 @@ All steps described have been tested on Ubuntu 18.04-LTS running :
 
 **Prerequisits to deploy the infrastructure and install a secured Nextcloud**
 
-a. Create an account in AWS and get respective API keys to be used with Terraform 
+a. Create an account in AWS and get respective API keys to be used with Terraform \
 b. [Install Terraform](https://askubuntu.com/questions/983351/how-to-install-terraform-in-ubuntu#983352) and ensure it is in your $PATH \
 c. [Install Ansible](https://linuxhandbook.com/install-ansible-linux/) and ensure it is in your $PATH \
 d. Clone [byte13/Terraform-AWS-TwoTiersVPC](https://github.com/byte13/Terraform-AWS-TwoTiersVPC) locally \
