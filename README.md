@@ -17,7 +17,7 @@ All steps described have been tested on Ubuntu 18.04-LTS running :
 - Ansible 2.8.5
 - Python 2.7.15+ 
 
-**Prerequisits to deploy the infrastructure and install a secured Nextcloud**
+**Prerequisits to deploy the infrastructure and install a secured Nextcloud** (executed only if *Ansible-NC-MariaDB-Enabled = true* in **terraform.tfvars**
 
 a. Create an account in AWS and get respective API keys to be used with Terraform \
 b. [Install Terraform](https://askubuntu.com/questions/983351/how-to-install-terraform-in-ubuntu#983352) and ensure it is in your $PATH \
