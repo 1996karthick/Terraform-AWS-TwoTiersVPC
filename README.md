@@ -14,7 +14,7 @@ The reason is that Let's Encrypt doesn't accept to create certificates for Amazo
 
 All steps described have been tested on Ubuntu 18.04-LTS running :
 - Terraform 0.12.12
-- Ansible 2.8.5
+- Ansible 2.8.5 and 2.9.0
 - Python 2.7.15+ 
 
 **Prerequisits to deploy the infrastructure and install a secured Nextcloud** 
