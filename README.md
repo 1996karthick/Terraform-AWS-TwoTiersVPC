@@ -17,7 +17,7 @@ All steps described have been tested on Ubuntu 18.04-LTS running :
 - Ansible 2.8.5 and 2.9.0
 - Python 2.7.15+ 
 
-As is, all SSH conections are done over IPv6. 
+As is, all SSH connections are done over IPv6. 
 Next version will support a variable to choose between both, IPv4 or IPv6 
 
 **Prerequisits to deploy the infrastructure and install a secured Nextcloud** 
