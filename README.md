@@ -27,7 +27,7 @@ b. [Install Terraform](https://askubuntu.com/questions/983351/how-to-install-ter
 c. [Install Ansible](https://linuxhandbook.com/install-ansible-linux/) and ensure it is in your $PATH \
 d. Clone [byte13/Terraform-AWS-TwoTiersVPC](https://github.com/byte13/Terraform-AWS-TwoTiersVPC) locally \
 e. Clone [byte13/Ansible-MariaDB-Redis-Nextcloud-LetsEncrypt](https://github.com/byte13/Ansible-MariaDB-Redis-Nextcloud-LetsEncrypt) locally \
-f. Create SSH keys to be used later on to execute Ansible playbooksi, and protect the private key with a strong passphrase. \
+f. Create SSH keys to be used later on to execute Ansible playbooks, and protect the private key with a strong passphrase. \
 g. Use ssh-agent and ssh-add to unlock aforementioned SSH key so that Ansible playbook will run without prompting you for the passphrase. \
 h. **Read all comments and set the variables for your environment in terraform.tfvars**. This file is located in the root module directory of Terraform definitions cloned previously (step d.)\
 i. **Read all comments and follow instructions in README file of the Ansible playbook** \
