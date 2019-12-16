@@ -92,8 +92,8 @@ resource "aws_security_group" "Byte13_BackSN1-SG1" {
     from_port        = 3306 
     to_port          = 3306
     protocol         = "tcp"
-    cidr_blocks      = ["${var.FrontSN-IPv4}"]
-    ipv6_cidr_blocks = ["${var.FrontSN-IPv6}"]
+    cidr_blocks      = [var.FrontSN-IPv4]
+    ipv6_cidr_blocks = [var.FrontSN-IPv6]
   }
 
   # outbound internet access
