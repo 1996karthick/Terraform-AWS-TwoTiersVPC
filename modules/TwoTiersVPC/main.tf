@@ -27,7 +27,7 @@ resource "aws_egress_only_internet_gateway" "Byte13_IPv6EgressGW1" {
 
 # Allocate an elastic IP address for the IPv4 NAT gateway
 resource "aws_eip" "Byte13_NATEIP" {
-  depends_on = ["aws_internet_gateway.Byte13_IPGW1"]
+  depends_on = [aws_internet_gateway.Byte13_IPGW1]
   vpc        = true
 
   tags = {
@@ -57,7 +57,7 @@ resource "aws_route_table" "Byte13_BackendSNRouteTable" {
 
 # Add IPv4 default route in backend subnet route table
 resource "aws_route" "Byte13_BackendSNIPv4DefNatRoute" {
-  #depends_on             = ["aws_internet_gateway.Byte13_NATGW1", "${aws_route_table.Byte13_BackendSNRouteTable"]
+  #depends_on             = [aws_internet_gateway.Byte13_NATGW1, aws_route_table.Byte13_BackendSNRouteTable]
   route_table_id         = aws_route_table.Byte13_BackendSNRouteTable.id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.Byte13_NATGW1.id
@@ -65,7 +65,7 @@ resource "aws_route" "Byte13_BackendSNIPv4DefNatRoute" {
 
 # Add IPv6 default route in backend subnet route table
 resource "aws_route" "Byte13_BackendSNIPv6DefRoute" {
-  #depends_on                  = ["aws_egress_only_internet_gateway.IPv6EgressGW1", "${aws_route_table.Byte13_BackendSNRouteTable"]
+  #depends_on                  = [aws_egress_only_internet_gateway.IPv6EgressGW1, aws_route_table.Byte13_BackendSNRouteTable]
   route_table_id              = aws_route_table.Byte13_BackendSNRouteTable.id
   destination_ipv6_cidr_block = "::/0"
   gateway_id                  = aws_internet_gateway.Byte13_IPGW1.id
@@ -92,7 +92,7 @@ resource "aws_route" "Byte13_FrontendSNIPv4DefRoute" {
 
 # Add IPv6 default route in frontend subnet route table
 resource "aws_route" "Byte13_FrontendSNIPv6DefRoute" {
-  #depends_on                  = ["aws_egress_only_internet_gateway.IPGW1", "${aws_route_table.Byte13_FrontendSNRouteTable"]
+  #depends_on                  = [aws_egress_only_internet_gateway.IPGW1, aws_route_table.Byte13_FrontendSNRouteTable]
   route_table_id              = aws_route_table.Byte13_FrontendSNRouteTable.id
   destination_ipv6_cidr_block = "::/0"
   gateway_id                  = aws_internet_gateway.Byte13_IPGW1.id
@@ -102,9 +102,9 @@ resource "aws_route" "Byte13_FrontendSNIPv6DefRoute" {
 resource "aws_subnet" "Byte13_FrontSN1" {
   vpc_id                          = aws_vpc.Byte13_VPC1.id
   # cidr_block                    = "10.13.1.0/24"
-  cidr_block                      = "${cidrsubnet(aws_vpc.Byte13_VPC1.cidr_block, 8, 1)}"
+  cidr_block                      = cidrsubnet(aws_vpc.Byte13_VPC1.cidr_block, 8, 1)
   map_public_ip_on_launch         = true
-  ipv6_cidr_block                 = "${cidrsubnet(aws_vpc.Byte13_VPC1.ipv6_cidr_block, 8, 1)}"
+  ipv6_cidr_block                 = cidrsubnet(aws_vpc.Byte13_VPC1.ipv6_cidr_block, 8, 1)
   assign_ipv6_address_on_creation = true
 
   tags = {
@@ -116,11 +116,11 @@ resource "aws_subnet" "Byte13_FrontSN1" {
 resource "aws_subnet" "Byte13_BackSN1" {
   vpc_id                          = aws_vpc.Byte13_VPC1.id
   # cidr_block                    = "10.13.2.0/24"
-  cidr_block                      = "${cidrsubnet(aws_vpc.Byte13_VPC1.cidr_block, 8, 2)}"
+  cidr_block                      = cidrsubnet(aws_vpc.Byte13_VPC1.cidr_block, 8, 2)
   # We map public IP's, yet, in order to provision with Ansible over SSH
   # Could be set to false when the systems are provisioned
   map_public_ip_on_launch         = false
-  ipv6_cidr_block                 = "${cidrsubnet(aws_vpc.Byte13_VPC1.ipv6_cidr_block, 8, 2)}"
+  ipv6_cidr_block                 = cidrsubnet(aws_vpc.Byte13_VPC1.ipv6_cidr_block, 8, 2)
   assign_ipv6_address_on_creation = true
 
   tags = {
@@ -130,13 +130,13 @@ resource "aws_subnet" "Byte13_BackSN1" {
 
 # Associate route tables to subnets
 resource "aws_route_table_association" "Byte13_BackendSNRouteAssociation" {
-  #depends_on     = ["${aws_subnet.Byte13_BackSN1}", "${aws_route_table.Byte13_BackendSNRouteTable"]
+  #depends_on     = [aws_subnet.Byte13_BackSN1}, aws_route_table.Byte13_BackendSNRouteTable]
   subnet_id      = aws_subnet.Byte13_BackSN1.id
   route_table_id = aws_route_table.Byte13_BackendSNRouteTable.id
 }
 
 resource "aws_route_table_association" "Byte13_FrontendSNRouteAssociation" {
-  #depends_on     = ["${aws_subnet.Byte13_FrontSN1}", "${aws_route_table.Byte13_FrontendSNRouteTable"]
+  #depends_on     = [aws_subnet.Byte13_FrontSN1, aws_route_table.Byte13_FrontendSNRouteTable]
   subnet_id      = aws_subnet.Byte13_FrontSN1.id
   route_table_id = aws_route_table.Byte13_FrontendSNRouteTable.id
 }
