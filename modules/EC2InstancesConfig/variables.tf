@@ -1,6 +1,6 @@
 variable EC2-FrontendSRV-IPv6 {
     description = "IPv6 address of frontend host"
-    type = "list"
+    type = list
 }
 
 variable EC2-FrontendSRV-PrivIPv4 {
@@ -17,7 +17,7 @@ variable EC2-FrontendSRV-PubFQDN {
 
 variable EC2-BackendSRV-IPv6 {
     description = "IPv6 address of backend host"
-    type = "list"
+    type = list
 }
 
 #variable EC2-BackendSRV-PrivIPv4 {
