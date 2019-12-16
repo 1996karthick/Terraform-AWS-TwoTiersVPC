@@ -13,7 +13,7 @@ The current version doesn't use Elastic IP for Nextcloud service, but simple pub
 The reason is that Let's Encrypt doesn't accept to create certificates for Amazon public FQDN's.
 
 All steps described have been tested on Ubuntu 18.04-LTS running :
-- Terraform 0.12.12
+- Terraform 0.12.18
 - Ansible 2.8.5 and 2.9.0
 - Python 2.7.15+ 
 
