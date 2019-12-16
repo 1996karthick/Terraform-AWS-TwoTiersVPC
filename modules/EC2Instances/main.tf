@@ -3,20 +3,20 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["${var.EC2-AmiName}"]
+    values = [var.EC2-AmiName]
   }
 
   filter {
     name   = "virtualization-type"
-    values = ["${var.EC2-VirtType}"]
+    values = [var.EC2-VirtType]
   }
 
-  owners = ["${var.EC2-AmiOwners}"] # Canonical
+  owners = [var.EC2-AmiOwners] # Canonical
 }
 
 resource "aws_key_pair" "Byte13_SSHPubKey" {
   key_name   = "${var.ObjNames-Prefix}_SSHPubKey"
-  public_key = "${file(var.EC2-SSHPubKey)}"
+  public_key = file(var.EC2-SSHPubKey)
   #public_key = var.EC2-SSHPubKey
 }
 
@@ -25,7 +25,7 @@ resource "aws_instance" "Byte13_BackendSRV1" {
   instance_type               = var.EC2-InstanceType
   key_name                    = "${var.ObjNames-Prefix}_SSHPubKey"
   subnet_id                   = var.BackSN-id 
-  vpc_security_group_ids      = ["${var.BackSG-id}"]
+  vpc_security_group_ids      = [var.BackSG-id]
   # IPV4 public IPv4 address not required if IPv6 with egress, only, route is set
   associate_public_ip_address = false
 
@@ -39,7 +39,7 @@ resource "aws_instance" "Byte13_FrontendSRV1" {
   instance_type               = var.EC2-InstanceType
   key_name                    = "${var.ObjNames-Prefix}_SSHPubKey"
   subnet_id                   = var.FrontSN-id 
-  vpc_security_group_ids      = ["${var.FrontSG-id}"]
+  vpc_security_group_ids      = [var.FrontSG-id]
   # Interesting description of Eslastic IP's and Public IP's :
   # https://kerneltalks.com/cloud-services/difference-between-elastic-ip-and-public-ip/
   # Basically, Public IP changes each time the instance is restarted (dynamic IP)
