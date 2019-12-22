@@ -45,7 +45,10 @@ variable "Nextcloud-Version" {
 variable "Nextcloud-DataDir" {
 }
 
-variable "Ansible-NC-MariaDB-Enabled" {
+variable "Ansible-MariaDB-Enabled" {
+}
+
+variable "Ansible-NC-Enabled" {
 }
 
 variable "Ansible-NCVaultPwd" {
