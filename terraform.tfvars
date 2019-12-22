@@ -82,8 +82,10 @@ EC2-SSHPubKey   = "/some/path/.ssh/ubuntu_rsa.pub"
 # Variables to be set for EC2InstancesConfig module definitions
 # 
 
-# Variable to run this module or not (true or false without quotes)
-Ansible-NC-MariaDB-Enabled = true
+# Variable to install or not MariaDB on backend server (true or false without quotes)
+Ansible-MariaDB-Enabled = true
+# Variable to install or not Nextcloud on backend server (true or false without quotes)
+Ansible-NC-Enabled = true
 
 # Agent ID (name of the SSH key) to be used by Ansible to connect to remote EC2 instances 
 SSH-agent-ID          = "ubuntu_rsa"
