@@ -33,6 +33,9 @@ variable "EC2-InstanceType" {
 variable "EC2-SSHPubKey" {
 }
 
+variable "PHP-Version" {
+}
+
 variable "Nextcloud-FQDN" {
 }
 
