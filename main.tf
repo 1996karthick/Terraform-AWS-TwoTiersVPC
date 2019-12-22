@@ -77,6 +77,8 @@ module "EC2InstancesConfig" {
   Ansible-NCVaultPwd    = var.Ansible-NCVaultPwd
   Ansible-RedisVaultPwd = var.Ansible-RedisVaultPwd
 
+  PHP-Version           = var.PHP-Version
+  
   Nextcloud-FQDN        = var.Nextcloud-FQDN
   Nextcloud-Version     = var.Nextcloud-Version
   Nextcloud-DataDir     = var.Nextcloud-DataDir
