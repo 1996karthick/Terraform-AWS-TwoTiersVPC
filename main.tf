@@ -68,22 +68,23 @@ module "EC2Instances" {
 module "EC2InstancesConfig" {
   source = "./modules/EC2InstancesConfig"
 
-  Ansible-NC-MariaDB-Enabled = var.Ansible-NC-MariaDB-Enabled 
+  Ansible-MariaDB-Enabled  = var.Ansible-MariaDB-Enabled
+  Ansible-NC-Enabled       = var.Ansible-NC-Enabled
 
-  SSH-agent-ID          = var.SSH-agent-ID
-  SSH-username          = var.SSH-username
+  SSH-agent-ID             = var.SSH-agent-ID
+  SSH-username             = var.SSH-username
 
-  Ansible-PlayDir       = var.Ansible-PlayDir
-  Ansible-NCVaultPwd    = var.Ansible-NCVaultPwd
-  Ansible-RedisVaultPwd = var.Ansible-RedisVaultPwd
+  Ansible-PlayDir          = var.Ansible-PlayDir
+  Ansible-NCVaultPwd       = var.Ansible-NCVaultPwd
+  Ansible-RedisVaultPwd    = var.Ansible-RedisVaultPwd
 
-  PHP-Version           = var.PHP-Version
+  PHP-Version              = var.PHP-Version
   
-  Nextcloud-FQDN        = var.Nextcloud-FQDN
-  Nextcloud-Version     = var.Nextcloud-Version
-  Nextcloud-DataDir     = var.Nextcloud-DataDir
+  Nextcloud-FQDN           = var.Nextcloud-FQDN
+  Nextcloud-Version        = var.Nextcloud-Version
+  Nextcloud-DataDir        = var.Nextcloud-DataDir
 
-  Letsencrypt-email     = var.Letsencrypt-email
+  Letsencrypt-email        = var.Letsencrypt-email
 
   #  Nextcloud-FQDN           = "module.EC2Instances.EC2-FrontendSRV-PubFQDN"
   EC2-FrontendSRV-IPv6     = module.EC2Instances.EC2-FrontendSRV-IPv6
