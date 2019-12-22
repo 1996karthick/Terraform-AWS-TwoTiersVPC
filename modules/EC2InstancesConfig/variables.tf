@@ -48,6 +48,10 @@ variable Ansible-PlayDir {
     description = "Directory of Ansible palybooks and roles"
 }
 
+variable PHP-Version {
+    description = "PHP version to be installed"
+}
+
 variable Nextcloud-DataDir {
     description = "Directory where Nextcloud stores uploaded data files"
 }
