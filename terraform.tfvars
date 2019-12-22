@@ -111,6 +111,10 @@ Ansible-NCVaultPwd    = "/var/IAC/ANSIBLE/SETUP/ncVault_pwd.txt"
 # Either set an explicit FQDN
 Nextcloud-FQDN        = "aws-nc1.yourdomain.org"
 # or, in main.tf, use the FQDN returned by Terrafrom AWS provisionner (module.EC2Instances.PubIP1-FQDN)
+
+# Version of PHP to be installed
+PHP-Version     = "7.3"
+
 # Version of Nextcloud to be installed
 Nextcloud-Version     = "17.0.0"
 # Directory which will store the Nextcloud data files
