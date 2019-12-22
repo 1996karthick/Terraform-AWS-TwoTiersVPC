@@ -56,13 +56,12 @@ provider "null" {
     version = "~> 2.1"
 }
 
-# Perfrom SysAdmin operations on remote VMs
-resource "null_resource" "Byte13_NullSRC" {
+# Perfrom SysAdmin operations on backend server
+resource "null_resource" "Byte13_NullRES1" {
 
     # Check if the resource is to be created
-    count = var.Ansible-NC-MariaDB-Enabled == true ? 1 : 0
-
-    # Perfrom SysAdmin operations on backend server 
+    count = var.Ansible-MariaDB-Enabled == true ? 1 : 0
+    
     provisioner "remote-exec" {
         connection {
             type           = "ssh"
@@ -99,8 +98,14 @@ resource "null_resource" "Byte13_NullSRC" {
     provisioner "local-exec" {
         command = "if [ -f ${var.Ansible-PlayDir}/Backend-servers_inventory ] ; then shred -u -z ${var.Ansible-PlayDir}/Backend-servers_inventory ; fi"
     }
+}
 
-    # Perfrom SysAdmin operations on frontend server 
+# Perfrom SysAdmin operations on frontend server 
+resource "null_resource" "Byte13_NullRES2" {
+    
+    # Check if the resource is to be created
+    count = var.Ansible-NC-Enabled == true ? 1 : 0
+    
     provisioner "remote-exec" {
         connection {
             type           = "ssh"
