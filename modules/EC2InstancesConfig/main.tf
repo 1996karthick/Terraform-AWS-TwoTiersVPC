@@ -27,6 +27,7 @@ resource "local_file" "Frontend-servers_inventory-file" {
 # If IPv6 is used for configuration over SSH
     content  = templatefile("./templates/Frontend-servers_inventory.tpl", {Frontend-server = var.EC2-FrontendSRV-IPv6[0]}) 
     filename = "${var.Ansible-PlayDir}/Frontend-servers_inventory"
+    file_permission = 640
 }
 
 # The following blocks prepare Ansible inventory file for backend server 
@@ -47,6 +48,7 @@ resource "local_file" "Backend-servers_inventory-file" {
 # If IPv6 is used for configuration over SSH
     content  = templatefile("./templates/Backend-servers_inventory.tpl", {Backend-server = var.EC2-BackendSRV-IPv6[0]}) 
     filename = "${var.Ansible-PlayDir}/Backend-servers_inventory"
+    file_permission = 640
 }
 #
 # End of preparation of Ansible inventory files
