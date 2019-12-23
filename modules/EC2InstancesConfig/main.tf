@@ -105,6 +105,9 @@ resource "null_resource" "Byte13_NullRES1" {
 # Perfrom SysAdmin operations on frontend server 
 resource "null_resource" "Byte13_NullRES2" {
     
+  # Wait for MariaDB backend to be available
+    depends_on             = [null_resource.Byte13_NullRES2]
+    
     # Check if the resource is to be created
     count = var.Ansible-NC-Enabled == true ? 1 : 0
     
