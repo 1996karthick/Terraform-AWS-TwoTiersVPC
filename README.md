@@ -125,8 +125,9 @@ Triggs the modules described below then displays usefull information about the c
   and Nextcloud installed only if *Ansible-NC-Enabled = true* in **terraform.tfvars** )
 
 19. Install and configure MariaDB
-20. Delete Ansible inventories
+20. Delete Ansible inventory of backend server
 21. Install and configure Apache, PHP, Redis, Nextcloud and Let'Encrypt
-22. Possibly, disable direct access to backend subnet
+22. Delete Ansible inventory of frontend server
+23. Possibly, disable direct access to backend subnet
     - To be re-enabled each time configuration changes must be applied on backend instances
 
